@@ -13,6 +13,7 @@ public class Result<T> {
         return type;
     }
 
+
     public boolean isSuccess() {
         return type == ResultType.SUCCESS;
     }
