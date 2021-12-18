@@ -40,14 +40,14 @@ _Use the SQL script included in the starter code to create your database and the
 
 * [x] Create the AuthController with an endpoint for authenticating users (0.5 hours)
 
-* [ ] Update the security configuration ant matchers to allow anonymous requests to the AuthController endpoint for authenticating users (#.08 hours)
+* [x] Update the security configuration ant matchers to allow anonymous requests to the AuthController endpoint for authenticating users (#.08 hours)
 
 **Make sure that my GitHub repo is updated (i.e. push all commits to my local feature branch to the remote repo)!**
 
 ### Part 2: Client-Side Routes
 
 * [ ] Implement the required client-side routes (#.# hours)
-    * [ ] Install `react-router-dom`
+    * [x] Install `react-router-dom`
     * [ ] Define the necessary client-side routes (see the list of routes below)
     * [ ] Stub out any components that are needed to support the client-side routes
         * _Note: Stub out the individual Agents CRUD UI components but hold off on moving any code from last week's monolithic Agents CRUD UI component to the individual components_
@@ -57,25 +57,25 @@ _Use the SQL script included in the starter code to create your database and the
 
 ### Part 3: User Login
 
-* [ ] Create a "Login" component (#.# hours)
-    * [ ] Add a form with "Username" and "Password" fields
-    * [ ] Use `fetch` to `POST` the user's information to the User API
-    * [ ] Use an existing user's information to test that the API returns an auth token
+* [] Create a "Login" component (#.# hours)
+    * [x] Add a form with "Username" and "Password" fields
+    * [x] Use `fetch` to `POST` the user's information to the User API
+    * [x] Use an existing user's information to test that the API returns an auth token
 
-* [ ] Add the necessary user state and helper functions to the App component (#.# hours)
-    * [ ] Add a state variable to track the current user
-    * [ ] Add a function to login a user
-    * [ ] Add a function to logout a user
-    * [ ] Collect the user state variable along with the login/logout helper functions into a single `auth` object
+* [x] Add the necessary user state and helper functions to the App component (#.# hours)
+    * [x] Add a state variable to track the current user
+    * [x] Add a function to login a user
+    * [x] Add a function to logout a user
+    * [x] Collect the user state variable along with the login/logout helper functions into a single `auth` object
 
-* [ ] Create a React context to track user auth (#.# hours)
-    * [ ] Create the context in its own module
-    * [ ] Update the App component to provide the context to the entire app
-    * [ ] Set the context's `value` to the `auth` object
+* [x] Create a React context to track user auth (#.# hours)
+    * [x] Create the context in its own module
+    * [x] Update the App component to provide the context to the entire app
+    * [x] Set the context's `value` to the `auth` object
 
-* [ ] Update the "Login" component (#.# hours)
-    * [ ] Consume the user auth context
-    * [ ] After a successful `POST` to the User API, call the auth context's login function and pass in the auth token and redirect the user to the "Home" route
+* [x] Update the "Login" component (#.# hours)
+    * [x] Consume the user auth context
+    * [x] After a successful `POST` to the User API, call the auth context's login function and pass in the auth token and redirect the user to the "Home" route
 
 * [ ] Update the header/navbar component (#.# hours)
     * [ ] Consume the user auth context

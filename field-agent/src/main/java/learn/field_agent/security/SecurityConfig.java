@@ -1,5 +1,6 @@
 package learn.field_agent.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.converter = converter;
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -29,11 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
-
-                .anyRequest().authenticated()
-                .antMatchers( HttpMethod.GET, "/api/agents", "/api/agents/*").permitAll()
+                .antMatchers( HttpMethod.GET, "/api/agent", "/api/agent/*").permitAll()
                 .antMatchers( HttpMethod.POST, "/api/security/authenticate" ).permitAll()
-                .antMatchers( HttpMethod.POST, "/api/agents" ).authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter))
                 .sessionManagement()
