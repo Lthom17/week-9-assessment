@@ -5,11 +5,11 @@ import jwtDecode from 'jwt-decode';
 import UserContext from '../Context/UserContext';
 import { useContext } from "react";
 
-function Login({ onLogOut }) {
+function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState([]);
+    const [error, setError] = useState("");
 
     const history = useHistory();
 

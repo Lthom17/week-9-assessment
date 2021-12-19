@@ -1,49 +1,89 @@
-import {useState} from 'react'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import AddAgent from './AddAgent';
+import Error from './Error';
 
-function UpdateAgent({selectedAgent, onUpdate}) {
-    
+function UpdateAgent({ onUpdate }) {
 
-    const [agent, setAgent] = useState(selectedAgent);
+    const { id } = useParams();
+
+    const [agent, setAgent] = useState(
+        {
+            firstName: "",
+            middleName: "",
+            lastName: "",
+            dob: "",
+            heightInInches: ""
+        }
+    );
     
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        if (id) {
+            fetch(`http://localhost:8080/api/agent/${id}`)
+                .then(response => {
+                    if (response.status !== 200) {
+                        return Promise.reject("Agent fetch failed")
+                    }
+                    return response.json();
+                })
+                .then(data => setAgent(data))
+                .catch(
+                    response => setError(response[0])
+                );
+
+        }
+    },
+        [id]
+    );
+
+
+
 
     const doUpdateAgent = () => {
 
-        const url = `http://localhost:8080/api/agent/${agent.agentId}`
+        const url = `http://localhost:8080/api/agent/${id}`
 
-            const init = {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-    
-                body: JSON.stringify(agent)
-            }
+        const init = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt_token")}`
+            },
 
-            fetch(url, init)
+            body: JSON.stringify(agent)
+        }
+
+        fetch(url, init)
             .then(async response => {
-                if (response.status !== 204) {
-                    console.log("Agent was not created.");
-                    try {
-                        return await Promise.reject("response is not 204 NO_CONTENT");
-                    } catch (error) {
-                        return console.log(error);
-                    }
+                if (response.status === 204 || response.status === 400) {
+                    return response.json();
+                } else {
+                    return Promise.reject("Response was not 204 NO_CONTENT");
                 }
-                return response.json();
-            }).then(updatedAgent => onUpdate(updatedAgent))
-            .then(console.log(`Agent ${selectedAgent} UPDATED`));;
-            
 
+            }).then(response => {
+                if (response) {
+                    setError(response[0])
+                } else {
+                    onUpdate(agent);
+                }
+            }).catch(
+                err => {
+                    setError(err);
+                }
+            );
 
     }
 
 
 
-   
+
     const updateAgent = () => {
 
-        const agentTemp = {...agent};
+        const agentTemp = { ...agent };
 
         agentTemp.agentId = parseInt(document.getElementById("agent_id").value);
         agentTemp.firstName = document.getElementById("agent_first_name").value;
@@ -57,46 +97,43 @@ function UpdateAgent({selectedAgent, onUpdate}) {
 
     }
 
-
-    
-
     return (
+
         <div>
-            
-            <div id="collapseUpdateAgent" className="collapse">
-                <h2>Update an Agent</h2>
-                <form  className="was-validated align-items-center" onSubmit={doUpdateAgent}>
-                    <div>
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor='agent_first_name' >First Name: </label>
-                            <input id='agent_first_name' className="form-control" defaultValue={selectedAgent.firstName} onChange={updateAgent} required/>
+            <h2>Update an Agent</h2>
+            {
+                <Error msg={error} />
+            }
+            <form className="was-validated align-items-center" onSubmit={doUpdateAgent}>
+                <div>
+                    <div className="col-md-4 mb-3">
+                        <label htmlFor='agent_first_name' >First Name: </label>
+                        <input id='agent_first_name' className="form-control" defaultValue={agent.firstName} onChange={updateAgent} required />
 
-                        </div>
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor='agent_middle_name' >Last Name: </label>
-                            <input id='agent_middle_name' className="form-control" defaultValue={selectedAgent.middleName} onChange={updateAgent} required/>
-                        </div>
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor='agent_last_name' >Last Name: </label>
-                            <input id='agent_last_name' className="form-control" defaultValue={selectedAgent.lastName} onChange={updateAgent} required/>
-                        </div>
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor='agent_dob' >Birthdate: </label>
-                            <input id='agent_dob' className="form-control" defaultValue={selectedAgent.dob} onChange={updateAgent} required/>
-                        </div>
-                        <div className="col-md-4 mb-3">
-                            <label htmlFor='agent_height' >Height(in): </label>
-                            <input id='agent_height' className="form-control" defaultValue={selectedAgent.heightInInches} onChange={updateAgent} required/>
-                        </div>
-                        <input id="agent_id" type="hidden" defaultValue={selectedAgent.agentId}/>
                     </div>
-                    <div>
-                        <button type="submit">Submit</button>
+                    <div className="col-md-4 mb-3">
+                        <label htmlFor='agent_middle_name' >Last Name: </label>
+                        <input id='agent_middle_name' className="form-control" defaultValue={agent.middleName} onChange={updateAgent} required />
                     </div>
-                </form>
-            </div>
+                    <div className="col-md-4 mb-3">
+                        <label htmlFor='agent_last_name' >Last Name: </label>
+                        <input id='agent_last_name' className="form-control" defaultValue={agent.lastName} onChange={updateAgent} required />
+                    </div>
+                    <div className="col-md-4 mb-3">
+                        <label htmlFor='agent_dob' >Birthdate: </label>
+                        <input id='agent_dob' className="form-control" defaultValue={agent.dob} onChange={updateAgent} required />
+                    </div>
+                    <div className="col-md-4 mb-3">
+                        <label htmlFor='agent_height' >Height(in): </label>
+                        <input id='agent_height' className="form-control" defaultValue={agent.heightInInches} onChange={updateAgent} required />
+                    </div>
+                    <input id="agent_id" type="hidden" defaultValue={agent.agentId} />
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
         </div>
-
     )
 }
 

@@ -1,9 +1,24 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import Error from './Error';
 
 
 
 function AddAgent() {
+
+    const dateMin = new Date();
+    dateMin.setDate(dateMin.getDate());
+    dateMin.setFullYear(dateMin.getFullYear() - 70);
+
+    const dateMax = new Date();
+    dateMax.setDate(dateMax.getDate());
+    dateMax.setFullYear(dateMax.getFullYear() - 12);
+
+
+
+
+    const [error, setError] = useState([]);
+
 
     const url = "http://localhost:8080/api/agent";
 
@@ -20,70 +35,75 @@ function AddAgent() {
     const [agent, setAgent] = useState(defaultAgent);
 
     const history = useHistory();
-    
-    
+
+
     const doAddAgent = (e) => {
         e.preventDefault();
-        
-        const init = {
-           
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(agent)
-            };
-        
 
-        
+        const init = {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt_token")}`
+            },
+            body: JSON.stringify(agent)
+        };
+
+
+
 
         fetch(url, init)
             .then(response => {
-                if (response.status !== 201) {
-                    console.log("Agent was not created.");
-                    try {
-                        return Promise.reject("response is not 200 OK");
-                    } catch (error) {
-                        return console.log(error);
-                    }
+                if (response.status === 201 || response.status === 400) {
+                    return response.json();
+                } else {
+                    return Promise.reject("Response was not 200 OK");
                 }
-                return response.json();
-            }).then(
-                history.push("/")
-                );
-    
-            
+
+            }).then(response => {
+                if (response.agentId) {
+                    history.push("/")
+                } else {
+                    setError(response[0])   
+                }
+            }).catch(
+                err => {
+                    setError(err);
+                }
+            );
+
     }
 
 
-    
-    
+
+
     const updateAgentFirst = (e) => {
 
-        const agentToAdd = {...agent};
+        const agentToAdd = { ...agent };
 
-        agentToAdd.firstName = e.target.value; 
+        agentToAdd.firstName = e.target.value;
 
         setAgent(agentToAdd);
-         
+
     }
 
-    
+
     const updateAgentMiddle = (e) => {
 
-        const agentToAdd = {...agent};
+        const agentToAdd = { ...agent };
 
-        agentToAdd.middleName = e.target.value; 
+        agentToAdd.middleName = e.target.value;
 
         setAgent(agentToAdd);
     }
 
     const updateAgentLast = (e) => {
 
-        const agentToAdd = {...agent};
+        const agentToAdd = { ...agent };
 
-        agentToAdd.lastName = e.target.value; 
+        agentToAdd.lastName = e.target.value;
 
         setAgent(agentToAdd);
     }
@@ -91,35 +111,31 @@ function AddAgent() {
 
     const updateAgentDOB = (e) => {
 
-        const agentToAdd = {...agent};
+        const agentToAdd = { ...agent };
 
-        agentToAdd.dob = e.target.value; 
+        agentToAdd.dob = e.target.value;
 
         setAgent(agentToAdd);
     }
 
     const updateAgentHeight = (e) => {
 
-        const agentToAdd = {...agent};
+        const agentToAdd = { ...agent };
 
-        agentToAdd.heightInInches = parseInt(e.target.value); 
+        agentToAdd.heightInInches = parseInt(e.target.value);
 
         setAgent(agentToAdd);
     }
 
 
-    const dateMax = new Date();
-    dateMax.setDate( dateMax.getDate());
-    dateMax.setFullYear( dateMax.getFullYear() - 12);
-    
-    const dateMin = new Date();
-    dateMin.setDate( dateMin.getDate());
-    dateMin.setFullYear( dateMin.getFullYear() - 70);
 
 
     return (
         <div>
             <h2>Add an Agent</h2>
+            {
+                <Error msg={error} />
+            }
             <form className="was-validated align-items-center" onSubmit={(e) => doAddAgent(e)} >
                 <div className="col-md-4 mb-3">
                     <label className="col-form-label pr-1" htmlFor='add_first_name' >First Name: </label>

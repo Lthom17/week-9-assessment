@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {useState, useEffect} from 'react';
 import jwtDecode from 'jwt-decode';
 import Login from './Components/Login.js';
+import NotFound from './Components/NotFound.js';
 
 
 
@@ -15,7 +16,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
 
-  localStorage.removeItem( "jwt_token");
+  
   const userObject = {
     currentUser,
     setCurrentUser
@@ -40,8 +41,6 @@ function App() {
     }
 
   });
-
-
 
 
   return (
@@ -69,6 +68,9 @@ function App() {
           </Route>
           <Route path="/delete-agent">
             <DeleteAgent />
+          </Route>
+          <Route >
+            <NotFound />
           </Route>
         </Switch>
         </UserContext.Provider>

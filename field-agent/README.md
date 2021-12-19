@@ -48,8 +48,8 @@ _Use the SQL script included in the starter code to create your database and the
 
 * [ ] Implement the required client-side routes (#.# hours)
     * [x] Install `react-router-dom`
-    * [ ] Define the necessary client-side routes (see the list of routes below)
-    * [ ] Stub out any components that are needed to support the client-side routes
+    * [x] Define the necessary client-side routes (see the list of routes below)
+    * [x] Stub out any components that are needed to support the client-side routes
         * _Note: Stub out the individual Agents CRUD UI components but hold off on moving any code from last week's monolithic Agents CRUD UI component to the individual components_
     * [ ] Display a "Not Found" message if a route doesn't match one of the defined routes
 
@@ -78,10 +78,10 @@ _Use the SQL script included in the starter code to create your database and the
     * [x] After a successful `POST` to the User API, call the auth context's login function and pass in the auth token and redirect the user to the "Home" route
 
 * [ ] Update the header/navbar component (#.# hours)
-    * [ ] Consume the user auth context
-    * [ ] When there's a logged in user, display the user's username and "Logout" button
-    * [ ] When there's not a logged in user, display links for the "Login" and "Register" routes
-    * [ ] When the "Logout" button is clicked, call the auth context's logout function
+    * [x] Consume the user auth context
+    * [x] When there's a logged in user, display the user's username and "Logout" button
+    * [x] When there's not a logged in user, display links for the "Login" and "Register" routes
+    * [x] When the "Logout" button is clicked, call the auth context's logout function
 
 * [ ] Protect each of the agent related routes (#.# hours)
     * [ ] When there's a logged in user, display the route's associated component
@@ -96,8 +96,8 @@ _Use the SQL script included in the starter code to create your database and the
     * [ ] Update the individual agent "Edit" and "Delete" buttons to redirect the user to the appropriate routes (if not already implemented)
 
 * [ ] Update the "Add Agent" component (#.# hours)
-    * [ ] Move code from the "Agents" component into the "Add Agent" component
-    * [ ] After a successful `POST` to the Field Agent API, redirect the user to the "Agents" route
+    * [x] Move code from the "Agents" component into the "Add Agent" component
+    * [x] After a successful `POST` to the Field Agent API, redirect the user to the "Agents" route
 
 * [ ] Update the "Edit Agent" component (#.# hours)
     * [ ] Move code from the "Agents" component into the "Edit Agent" component
