@@ -9,7 +9,7 @@ function Login({ onLogOut }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [error, setError] = useState([]);
 
     const history = useHistory();
 
@@ -28,42 +28,41 @@ function Login({ onLogOut }) {
                 password,
             }),
 
-        }).then((response) => {
+        }
+        ).then(response => {
 
-            if (response.status !== 200) {
-                if (response.status === 400) {
-                    const errors = response.json();
-                    setErrors(errors);
-                } else if (response.status === 403) {
-                    setErrors(["Login failed"]);
-                } else {
-                    return response.json();
+            if (response.status === 200) {
+                return response.json();
+            } else if (response.status === 403) {
+                    return Promise.reject("Login failed");
+            } else {
+                    return Promise.reject("Response was not 200 OK");
                 }
+            } 
+        ).then(parsedResponse => {
 
-            }
-        })
-            .then(parsedResponse => {
+            const jwt = parsedResponse.jwt_token;
 
-                const jwt = parsedResponse.jwt_token;
+            localStorage.setItem("jwt_token", jwt);
 
-                localStorage.setItem("jwt_token", jwt);
+            const userInfo = jwtDecode(jwt);
 
-                const userInfo = jwtDecode(jwt);
+            userManager.setCurrentUser(userInfo);
 
-                userManager.setCurrentUser(userInfo);
-
-                history.push("/");
-            }
-            );
+            history.push("/");
+        }
+        ).catch(err => {
+            setError(err);
+        });
 
     };
     return (
 
         <div className="card p-3" >
             <h4>Login</h4>
-            {errors.map((error, i) => (
-                <Error key={i} msg={error} />
-            ))}
+            {
+                <Error msg={error} />
+            }
             <form onSubmit={handleSubmit}>
                 <div className="col">
                     <input

@@ -14,6 +14,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
 
+  localStorage.removeItem( "jwt_token");
   const userObject = {
     currentUser,
     setCurrentUser
@@ -37,7 +38,7 @@ function App() {
      
     }
 
-  } );
+  });
 
 
 

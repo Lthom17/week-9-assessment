@@ -2,28 +2,33 @@ package learn.field_agent.controllers;
 
 import learn.field_agent.domain.Result;
 import learn.field_agent.domain.ResultType;
+import learn.field_agent.security.AppUserService;
 import learn.field_agent.security.JwtConverter;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/security")
 public class AuthController {
 
     AuthenticationManager authManager;
     JwtConverter converter;
+    private final AppUserService appUserService;
+
+    public AuthController(AuthenticationManager authenticationManager, JwtConverter converter, AppUserService appUserService) {
+        this.authManager = authenticationManager;
+        this.converter = converter;
+        this.appUserService = appUserService;
+    }
 
 
     @PostMapping("/authenticate")
