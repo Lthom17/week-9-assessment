@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import Login from './Login';
+import UserContext from '../Context/UserContext';
+import { useContext } from "react";
 
 
-function NavBar({onLogOut}) {
-    
-   
+
+function NavBar({ onLogOut }) {
+
+    const userManager = useContext(UserContext);
+
     return (
         <>
             <div className="row">
@@ -28,7 +32,12 @@ function NavBar({onLogOut}) {
                     </div>
                 </nav>
                 <div className="col-4">
-                    <Login  onLogOut={onLogOut}/>
+                    {userManager.currentUser ? <button className="btn btn-primary btn-sm" onClick={onLogOut}>{"Log Out " + userManager.currentUser.sub}</button>
+                        :
+                        
+                            <Login/>
+                        
+                    }
                 </div>
             </div>
 

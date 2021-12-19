@@ -85,7 +85,7 @@ function Login({ onLogOut }) {
                     />
                 </div>
                 <div className="col mt-3">
-                    {userManager.currentUser ? <button className="btn btn-primary btn-sm" onClick={onLogOut}>{"Log Out " + userManager.currentUser.sub}</button> : <button className="btn btn-primary btn-sm" type="submit">Login</button>}
+                     <button className="btn btn-primary btn-sm" type="submit">Login</button>
                 </div>
             </form>
         </div>

@@ -7,6 +7,7 @@ import UserContext from './Context/UserContext'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {useState, useEffect} from 'react';
 import jwtDecode from 'jwt-decode';
+import Login from './Components/Login.js';
 
 
 
@@ -54,6 +55,9 @@ function App() {
         <NavBar onLogOut={onLogout}/>
         
         <Switch>
+          <Route path="/login">
+            <Login/>
+          </Route>
           <Route exact path="/">
             <Agents />
           </Route>
