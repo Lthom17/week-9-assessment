@@ -17,7 +17,7 @@ function AddAgent() {
 
 
 
-    const [error, setError] = useState([]);
+    const [error, setError] = useState('');
 
 
     const url = "http://localhost:8080/api/agent";

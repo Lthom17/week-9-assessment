@@ -1,23 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AddAgent from './AddAgent';
 import Error from './Error';
 
-function UpdateAgent({ onUpdate }) {
+function UpdateAgent() {
 
     const { id } = useParams();
 
-    const [agent, setAgent] = useState(
-        {
-            firstName: "",
-            middleName: "",
-            lastName: "",
-            dob: "",
-            heightInInches: ""
-        }
-    );
-    
+
     const [error, setError] = useState("");
+
 
     useEffect(() => {
         if (id) {
@@ -33,10 +24,8 @@ function UpdateAgent({ onUpdate }) {
                     response => setError(response[0])
                 );
 
-        }
-    },
-        [id]
-    );
+        };
+    });
 
 
 
@@ -97,6 +86,14 @@ function UpdateAgent({ onUpdate }) {
 
     }
 
+    const dateMin = new Date();
+    dateMin.setDate(dateMin.getDate());
+    dateMin.setFullYear(dateMin.getFullYear() - 70);
+
+    const dateMax = new Date();
+    dateMax.setDate(dateMax.getDate());
+    dateMax.setFullYear(dateMax.getFullYear() - 12);
+
     return (
 
         <div>
@@ -121,7 +118,7 @@ function UpdateAgent({ onUpdate }) {
                     </div>
                     <div className="col-md-4 mb-3">
                         <label htmlFor='agent_dob' >Birthdate: </label>
-                        <input id='agent_dob' className="form-control" defaultValue={agent.dob} onChange={updateAgent} required />
+                        <input id='agent_dob' className="form-control" type="date" max={dateMax} min={dateMin} defaultValue={agent.dob} onChange={updateAgent} required />
                     </div>
                     <div className="col-md-4 mb-3">
                         <label htmlFor='agent_height' >Height(in): </label>

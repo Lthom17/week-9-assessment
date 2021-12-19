@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
 
-function Agents() {
+function Agents({role}) {
 
     const [agents, setAgents] = useState([]);
     
@@ -28,12 +28,18 @@ function Agents() {
 
 
         <div className="row">
-        <div className="col-3 mt-3" id="agent-list">
+        <div className="col-6 mt-3" id="agent-list">
             <h2 className="displayAll">Agent List</h2>
             <ul className="list-group list-group-flush">
-                {(agents.length !== 0) ? agents.map(a => <li key={a.agentId} className="list-group-item">{a.lastName}, {a.firstName}
-                <Link to={`/update-agent/${a.agentId}`}>Update</Link>
-                <Link to={`/delete-agent/${a.agentId}`}>Delete</Link></li>)
+                {(agents.length !== 0) ? agents.map(a => <li key={a.agentId} className="list-group-item">{a.lastName}, {a.firstName} 
+
+                <div className= "row">
+
+                {role === "ROLE_ADMIN" && (<Link to={`/update-agent/${a.agentId}`}className="btn btn-primary ml-2 btn-sm" role="button" data-bs-toggle="button">Update</Link>)}
+                {role === "ROLE_ADMIN" && (<Link to={`/delete-agent/${a.agentId}`} className="btn btn-danger ml-2 btn-sm" role="button">Delete</Link>)}
+                </div>
+                </li>)
+                
                 : <li>There are no agents to list.</li>}
          
             </ul>

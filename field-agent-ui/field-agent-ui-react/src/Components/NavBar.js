@@ -23,10 +23,7 @@ function NavBar({ onLogOut }) {
                                 <Link className="nav-link active" to="/add-agent">Add Agent</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active" to="/update-agent">Update Agent</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link active" to="/delete-agent">Delete Agent</Link>
+                                <Link className="nav-link active" to="/update-agents">Update Agents</Link>
                             </li>
                         </ul>
                     </div>

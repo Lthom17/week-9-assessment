@@ -46,18 +46,18 @@ _Use the SQL script included in the starter code to create your database and the
 
 ### Part 2: Client-Side Routes
 
-* [ ] Implement the required client-side routes (#.# hours)
+* [x] Implement the required client-side routes (#.# hours)
     * [x] Install `react-router-dom`
     * [x] Define the necessary client-side routes (see the list of routes below)
     * [x] Stub out any components that are needed to support the client-side routes
         * _Note: Stub out the individual Agents CRUD UI components but hold off on moving any code from last week's monolithic Agents CRUD UI component to the individual components_
-    * [ ] Display a "Not Found" message if a route doesn't match one of the defined routes
+    * [x] Display a "Not Found" message if a route doesn't match one of the defined routes
 
 **Make sure that my GitHub repo is updated (i.e. push all commits to my local feature branch to the remote repo)!**
 
 ### Part 3: User Login
 
-* [] Create a "Login" component (#.# hours)
+* [x] Create a "Login" component (#.# hours)
     * [x] Add a form with "Username" and "Password" fields
     * [x] Use `fetch` to `POST` the user's information to the User API
     * [x] Use an existing user's information to test that the API returns an auth token
@@ -77,39 +77,39 @@ _Use the SQL script included in the starter code to create your database and the
     * [x] Consume the user auth context
     * [x] After a successful `POST` to the User API, call the auth context's login function and pass in the auth token and redirect the user to the "Home" route
 
-* [ ] Update the header/navbar component (#.# hours)
+* [x] Update the header/navbar component (#.# hours)
     * [x] Consume the user auth context
     * [x] When there's a logged in user, display the user's username and "Logout" button
     * [x] When there's not a logged in user, display links for the "Login" and "Register" routes
     * [x] When the "Logout" button is clicked, call the auth context's logout function
 
-* [ ] Protect each of the agent related routes (#.# hours)
-    * [ ] When there's a logged in user, display the route's associated component
-    * [ ] When there's not a logged in user, redirect the user to the login route
+* [x] Protect each of the agent related routes (#.# hours)
+    * [x] When there's a logged in user, display the route's associated component
+    * [x] When there's not a logged in user, redirect the user to the login route
 
 **Make sure that my GitHub repo is updated (i.e. push all commits to my local feature branch to the remote repo)!**
 
 ### Part 4: Agents CRUD UI Component Refactoring
 
-* [ ] Update the "Agents" component (#.# hours)
-    * [ ] Update the "Add Agent" button to redirect the user to the "Add Agent" route (if not already completed)
-    * [ ] Update the individual agent "Edit" and "Delete" buttons to redirect the user to the appropriate routes (if not already implemented)
+* [x] Update the "Agents" component (#.# hours)
+    * [x] Update the "Add Agent" button to redirect the user to the "Add Agent" route (if not already completed)
+    * [x] Update the individual agent "Edit" and "Delete" buttons to redirect the user to the appropriate routes (if not already implemented)
 
-* [ ] Update the "Add Agent" component (#.# hours)
+* [x] Update the "Add Agent" component (#.# hours)
     * [x] Move code from the "Agents" component into the "Add Agent" component
     * [x] After a successful `POST` to the Field Agent API, redirect the user to the "Agents" route
 
-* [ ] Update the "Edit Agent" component (#.# hours)
-    * [ ] Move code from the "Agents" component into the "Edit Agent" component
-    * [ ] Use the `useParams` hook to get the agent's ID from the route
-    * [ ] Use `fetch` to `GET` the agent from the Field Agent API when the component is first loaded
-    * [ ] After a successful `PUT` to the Field Agent API, redirect the user to the "Agents" route
+* [x] Update the "Edit Agent" component (#.# hours)
+    * [x] Move code from the "Agents" component into the "Edit Agent" component
+    * [x] Use the `useParams` hook to get the agent's ID from the route
+    * [x] Use `fetch` to `GET` the agent from the Field Agent API when the component is first loaded
+    * [x] After a successful `PUT` to the Field Agent API, redirect the user to the "Agents" route
 
-* [ ] Update the "Delete Agent" component (if needed) (#.# hours)
-    * [ ] Move code from the "Agents" component into the "Delete Agent" component
-    * [ ] Use the `useParams` hook to get the agent's ID from the route
-    * [ ] Use `fetch` to `GET` the agent from the Field Agent API when the component is first loaded
-    * [ ] After a successful `DELETE` from the Field Agent API, redirect the user to the "Agents" route
+* [x] Update the "Delete Agent" component (if needed) (#.# hours)
+    * [x] Move code from the "Agents" component into the "Delete Agent" component
+    * [x] Use the `useParams` hook to get the agent's ID from the route
+    * [x] Use `fetch` to `GET` the agent from the Field Agent API when the component is first loaded
+    * [x] After a successful `DELETE` from the Field Agent API, redirect the user to the "Agents" route
 
 **Make sure that my GitHub repo is updated (i.e. push all commits to my local feature branch to the remote repo)!**
 
