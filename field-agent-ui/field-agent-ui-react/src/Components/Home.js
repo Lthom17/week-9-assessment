@@ -9,10 +9,10 @@ function Home() {
     useEffect( () => {
 
         fetch( "http://localhost:8080/api/agent" )
-        .then( async (response) => { 
+        .then((response) => { 
 
-            if( response.status !== 200 ){
-                return await Promise.reject("Agents fetch failed")
+            if(response.status !== 200 ){
+                return Promise.reject("Agents fetch failed")
             } else {
                 return response.json();
             }
