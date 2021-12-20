@@ -1,8 +1,8 @@
 function NotFound() {
     return (
       <main>
-        <h1>404</h1>
-        <p>Hello, 404 Page 📃</p>
+        <h1 style={{ color: 'red' }}>404</h1>
+        <p>Sorry, page not found</p>
       </main>
     );
   }

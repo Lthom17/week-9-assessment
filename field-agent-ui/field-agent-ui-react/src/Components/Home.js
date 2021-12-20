@@ -25,7 +25,7 @@ function Home() {
     return(
 
         <div className="row">
-        <div className="col-3 mt-3" id="agent-list">
+        <div className="col-6 mt-3" id="agent-list">
             <h2 className="displayAll">Agent List</h2>
             <ul className="list-group list-group-flush">
                 {(agents.length !== 0) ? agents.map(a => 

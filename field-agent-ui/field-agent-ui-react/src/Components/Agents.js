@@ -32,12 +32,16 @@ function Agents({role}) {
             <h2 className="displayAll">Agent List</h2>
             <ul className="list-group list-group-flush">
                 {(agents.length !== 0) ? agents.map(a => <li key={a.agentId} className="list-group-item">{a.lastName}, {a.firstName} 
-
-                <div className= "row">
-
-                {role === "ROLE_ADMIN" && (<Link to={`/update-agent/${a.agentId}`}className="btn btn-primary ml-2 btn-sm" role="button" data-bs-toggle="button">Update</Link>)}
-                {role === "ROLE_ADMIN" && (<Link to={`/delete-agent/${a.agentId}`} className="btn btn-danger ml-2 btn-sm" role="button">Delete</Link>)}
-                </div>
+                  
+               
+                {role === "ROLE_ADMIN" &&  
+                 
+                     (<div className= "row">
+                        <Link to={`/update-agent/${a.agentId}`} className="btn btn-primary ml-2 btn-sm" role="button" data-bs-toggle="button">Update</Link>
+                        <Link to={`/delete-agent/${a.agentId}`} className="btn btn-danger ml-2 btn-sm" role="button">Delete</Link> 
+                    
+                     </div>)}
+                
                 </li>)
                 
                 : <li>There are no agents to list.</li>}

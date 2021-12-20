@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import Error from './Error';
 
 
@@ -78,7 +77,8 @@ function AgentForm() {
                             setError("You do not have the appropriate permissions to complete this task.")
                         }   
                     } else {
-                        history.push( "/" );
+
+                        history.push( "/confirmation", { msg: `${agentToUpdate.lastName}, ${agentToUpdate.firstName} updated` });
                     }
                 }
             );
@@ -172,7 +172,8 @@ function AgentForm() {
                     <input id="agent_id" type="hidden" defaultValue={agent.agentId} />
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button className="btn btn-primary ml-2 btn-sm"  type="submit">Submit</button>
+                    <Link to={"/"} className="btn btn-danger ml-2 btn-sm" role="button">Cancel</Link>
                 </div>
             </form>
         </div>

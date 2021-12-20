@@ -3,7 +3,7 @@ function Error({msg}){
 
     return (
 
-        <div>
+        <div style={{ color: 'red' }}>
             <p>{msg}</p>
         </div>
 

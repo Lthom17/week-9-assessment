@@ -55,12 +55,13 @@ function DeleteAgent() {
         fetch(url, init)
             .then(response => {
                 if (response.status !== 204) {
+                    
                     console.log("Something went wrong!")
                 }
                 return response.json()
             }).then(
 
-                history.push("/")
+                history.push("/confirmation", { msg: `${agentToDelete.lastName}, ${agentToDelete.firstName} deleted` })
 
             )
 

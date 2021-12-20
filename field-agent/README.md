@@ -23,12 +23,12 @@ _TODO_ Add time estimates to each of the top-level tasks
         * Run `git push` to push changes to the remote repo
         * Rinse and repeat!
 
-* [ ] Download the starter project for this assessment and add the files to your repo
+* [x] Download the starter project for this assessment and add the files to your repo
     * **See your instruction team for the correct files to use!**
 
-* [ ] Review the requirements (#.# hours)
+* [x] Review the requirements (#.# hours)
 
-* [ ] Identify any research that I need to do (#.# hours)
+* [x] Identify any research that I need to do (#.# hours)
 
 ---
 
@@ -117,7 +117,7 @@ _Use the SQL script included in the starter code to create your database and the
 
 * [ ] Use the provided test plan to manually test the application (#.# hours)
 
-* [ ] Create a pull request in GitHub to facilitate code review (#.# hours)
+* [x] Create a pull request in GitHub to facilitate code review (#.# hours)
 
 ---
 

@@ -9,6 +9,7 @@ import Login from './Components/Login.js';
 import NotFound from './Components/NotFound.js';
 import Home from './Components/Home.js';
 import DeleteAgent from './Components/DeleteAgent.js';
+import Confirmation from './Components/Confirmation.js';
 
 
 function App() {
@@ -57,16 +58,19 @@ function App() {
               <Login />
             </Route>
             <Route path={["/update-agent/:id", "/add-agent"]}>
-              {currentUser?.sub ? <AgentForm role={currentUser?.sub.authorities}/> : <Redirect to="/" />}
+              {currentUser?.sub ? <AgentForm role={currentUser?.authorities} /> : <Redirect to="/" />}
             </Route>
             <Route path="/update-agents">
-              {currentUser?.sub ? <Agents role={currentUser?.sub.authorities}/> : <Redirect to="/" />}
+              {currentUser?.sub ? <Agents role={currentUser?.authorities} /> : <Redirect to="/" />}
             </Route>
             <Route path="/delete-agent/:id">
-              {currentUser?.sub ? <DeleteAgent role={currentUser?.sub.authorities}/> : <Redirect to="/" />}
+              {currentUser?.sub ? <DeleteAgent role={currentUser?.authorities} /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/confirmation">
+              <Confirmation />
             </Route>
             <Route >
               <NotFound />
