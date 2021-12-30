@@ -23,11 +23,23 @@ function DeleteAgent() {
     const [error, setError] = useState('');
 
 
-    const url = `http://localhost:8080/api/agent/${id}`
 
     useEffect(() => {
 
-        fetch(url)
+        const url = `http://localhost:8080/api/agent/${id}`
+
+
+        const init = {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt_token")}`
+            }
+        }
+
+        fetch(url, init)
             .then(response => {
                 if (response.status !== 200) {
                     return Promise.reject("Agent fetch failed")
@@ -36,13 +48,15 @@ function DeleteAgent() {
             })
             .then(data => setAgentToDelete(data))
             .catch(
-                response => setError(response[0])
+                err => setError(err)
             );
-    });
+    }, [id]);
 
 
 
     const doDelete = () => {
+
+        const url = `http://localhost:8080/api/agent/${id}`
 
         const init = {
             method: "DELETE",
@@ -55,16 +69,14 @@ function DeleteAgent() {
         fetch(url, init)
             .then(response => {
                 if (response.status !== 204) {
-                    
-                    console.log("Something went wrong!")
+                    return Promise.reject("Agent not deleted!")
                 }
                 return response.json()
             }).then(
-
                 history.push("/confirmation", { msg: `${agentToDelete.lastName}, ${agentToDelete.firstName} deleted` })
-
-            )
-
+            ).catch(
+                err => setError(err)
+            );
     }
 
     return (

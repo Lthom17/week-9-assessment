@@ -1,6 +1,5 @@
 import Agents from './Components/Agents.js'
 import NavBar from './Components/NavBar.js';
-import AgentForm from './Components/AgentForm.js';
 import UserContext from './Context/UserContext';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -10,6 +9,8 @@ import NotFound from './Components/NotFound.js';
 import Home from './Components/Home.js';
 import DeleteAgent from './Components/DeleteAgent.js';
 import Confirmation from './Components/Confirmation.js';
+import AddAgent from './Components/AddAgent.js';
+import UpdateAgent from './Components/UpdateAgent.js';
 
 
 function App() {
@@ -57,19 +58,22 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path={["/update-agent/:id", "/add-agent"]}>
-              {currentUser?.sub ? <AgentForm role={currentUser?.authorities} /> : <Redirect to="/" />}
-            </Route>
-            <Route path="/update-agents">
+            <Route path={"/agents"} exact element={ <Agents/> }>
               {currentUser?.sub ? <Agents role={currentUser?.authorities} /> : <Redirect to="/" />}
             </Route>
-            <Route path="/delete-agent/:id">
+            <Route path={"/add-agent"} exact element={ <AddAgent/> }>
+              {currentUser?.sub ? <AddAgent role={currentUser?.authorities} /> : <Redirect to="/" />}
+            </Route>
+            <Route path={"/update-agent/:id"} exact element={ <UpdateAgent/> }>
+              {currentUser?.sub ? <UpdateAgent role={currentUser?.authorities} /> : <Redirect to="/" />}
+            </Route>
+            <Route path="/delete-agent/:id" exact element={ <DeleteAgent/> }>
               {currentUser?.sub ? <DeleteAgent role={currentUser?.authorities} /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/confirmation">
+            <Route path="/confirmation" exact element={ <Confirmation/> }>
               <Confirmation />
             </Route>
             <Route >

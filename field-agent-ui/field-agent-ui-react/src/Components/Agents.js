@@ -9,18 +9,29 @@ function Agents({role}) {
 
         useEffect( () => {
 
-            fetch( "http://localhost:8080/api/agent" )
-            .then( async (response) => { 
+            const init = {
+
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("jwt_token")}`
+                }
+                
+            };
+
+            fetch( "http://localhost:8080/api/agent", init)
+            .then((response) => { 
     
                 if( response.status !== 200 ){
-                    return await Promise.reject("Agents fetch failed")
+                    return Promise.reject("Agents fetch failed")
                 } else {
                     return response.json();
                 }
             })
             .then(json => setAgents(json))
             .catch(err => console.log(err));
-        });
+        }, []);
     
 
    

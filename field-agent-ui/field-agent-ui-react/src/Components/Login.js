@@ -52,7 +52,7 @@ function Login() {
             history.push("/");
         }
         ).catch(err => {
-            setError(err);
+            setError(err)
         });
 
     };
