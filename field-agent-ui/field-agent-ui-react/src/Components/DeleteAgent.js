@@ -54,7 +54,9 @@ function DeleteAgent() {
 
 
 
-    const doDelete = () => {
+    const doDelete = (e) => {
+
+        e.preventDefault();
 
         const url = `http://localhost:8080/api/agent/${id}`
 

@@ -49,7 +49,7 @@ function AddAgent() {
 
             }).then(response => {
                 if (response.agentId) {
-                    history.push("/")
+                    history.push("/agents")
                 } else {
                     setError(response)
                 }

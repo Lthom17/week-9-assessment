@@ -79,7 +79,7 @@ function AgentForm({ onSubmit }) {
         }else {
             agentTemp.agentId = ""
         }
-       // agentTemp.agentId = parseInt(document.getElementById("agent_id").value);
+      
         agentTemp.firstName = document.getElementById("agent_first_name").value;
         agentTemp.middleName = document.getElementById("agent_middle_name").value;
         agentTemp.lastName = document.getElementById("agent_last_name").value;
@@ -93,7 +93,7 @@ function AgentForm({ onSubmit }) {
             agentTemp.heightInInches = "";
         }
 
-        //agentTemp.heightInInches = parseInt(document.getElementById("agent_height").value);
+       
 
 
         setAgentToUpdate(agentTemp);
